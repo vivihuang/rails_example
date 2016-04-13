@@ -7,3 +7,7 @@
   <strong>Comment:</strong>
   <%= comment.body %>
 </p>
+
+<%= link_to 'Delete Comment', article_comment_path(comment.article, comment),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
