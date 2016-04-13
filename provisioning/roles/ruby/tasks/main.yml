@@ -6,14 +6,6 @@
   apt: name={{ item }} state=present
   with_items:
     - build-essential
-    - git
-    - libxml2-dev
-    - libxslt1-dev
-    - libssl-dev
-    - zlib1g-dev
-    - nodejs
-    - curl
-    - wget
     - ruby2.3
     - ruby2.3-dev
     - ruby-switch
@@ -30,5 +22,9 @@
   shell: gem install bundler
   when: bundler_present|failed
 
+- stat: path=/vagrant/Gemfile
+  register: gemfile_rules
+
 - name: Run bundle install
   shell: bundle install chdir=/vagrant
+  when: gemfile_rules.stat.exists == True
