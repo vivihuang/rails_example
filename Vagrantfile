@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.hostname = "blog"
+  config.vm.hostname = "rails-example"
 
   # config.vm.network "private_network", ip: "192.168.13.30"
 
