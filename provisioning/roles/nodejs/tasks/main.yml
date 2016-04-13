@@ -1,0 +1,14 @@
+---
+
+- name: Check nodejs is installed or not
+  shell: node -v
+  register: node_present
+  ignore_errors: True
+
+- name: Download Nodejs runtime if not yet present
+  command: bash -c "curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -"
+  when: node_present|failed
+
+- name: Install Nodejs if not yet present
+  command: apt-get install -y nodejs
+  when: node_present|failed

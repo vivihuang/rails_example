@@ -1,0 +1,11 @@
+---
+- name: Deploys the runtime for Blog_rails Project
+  hosts: all
+  become: yes
+  become_method: sudo
+
+  roles:
+    - system
+    - nodejs
+#    - npm
+    - ruby

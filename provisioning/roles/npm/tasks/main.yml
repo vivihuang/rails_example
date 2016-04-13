@@ -1,0 +1,19 @@
+---
+- name: Check npm is installed or not
+  shell: npm -v
+  register: npm_present
+  ignore_errors: True
+
+- name: Download npm source
+  command: "{{ item }} chdir=/"
+  with_items:
+    - wget https://npmjs.org/install.sh --no-check-certificate
+    - chmod 777 install.sh
+    - ./install.sh
+  when: npm_present|failed
+
+- name: Download/Install packages
+  command: "{{ item }} chdir=/vagrant/"
+  with_items:
+    - npm install -g gulp
+    - npm install
