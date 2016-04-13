@@ -1,12 +1,12 @@
 ---
 - name: postgresql should listen on all ports
-  sudo_user: postgres
+  become_user: postgres
   lineinfile: dest=/etc/postgresql/9.3/main/postgresql.conf
               regexp="^listen_addresses"
               line="listen_addresses = '*'" state=present
 
 - name: postgresql should allow access to host
-  sudo_user: postgres
+  become_user: postgres
   copy:
     dest: /etc/postgresql/9.3/main/pg_hba.conf
     content: |
@@ -16,28 +16,28 @@
   notify: restart postgresql
 
 - name: terminate the connection to the db
-  sudo_user: postgres
-  command: psql -c "select pg_terminate_backend(pid) from pg_stat_activity where datname = 'love_learn_dev';"
+  become_user: postgres
+  command: psql -c "select pg_terminate_backend(pid) from pg_stat_activity where datname = 'blog_dev';"
 
 - name: drop development database if exist
-  sudo_user: postgres
-  command: psql -c "DROP DATABASE IF EXISTS love_learn_dev;"
+  become_user: postgres
+  command: psql -c "DROP DATABASE IF EXISTS blog_dev;"
 
 - name: delete root database if exist
-  sudo_user: postgres
+  become_user: postgres
   command: psql -c "DROP DATABASE IF EXISTS root;"
 
 - name: delete root user if exist
-  sudo_user: postgres
+  become_user: postgres
   command: psql -c "DROP ROLE IF EXISTS root;"
   
 - name: create root user
-  sudo_user: postgres
+  become_user: postgres
   command: psql -c "CREATE ROLE root SUPERUSER CREATEDB LOGIN;"
 
 - name: create root database
-  sudo_user: postgres
+  become_user: postgres
   command: psql -c "CREATE DATABASE root"
   
 - name: create development database
-  command: psql -c "CREATE DATABASE love_learn_dev"
+  command: psql -c "CREATE DATABASE blog_dev"
