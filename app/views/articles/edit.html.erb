@@ -1,5 +1,7 @@
-<h1>New Article</h1>
-<%= form_for :article, url: articles_path do |f| %>
+<h1>Editing article</h1>
+
+<%= form_for :article, url: article_path(@article), method: :put do |f| %>
+
   <% if @article.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -27,6 +29,7 @@
   <p>
     <%= f.submit %>
   </p>
+
 <% end %>
 
 <%= link_to 'Back', articles_path %>
