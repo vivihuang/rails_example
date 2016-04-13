@@ -1,5 +1,5 @@
 ---
-- name: Deploys the runtime for Blog_rails Project
+- name: Deploys the runtime for rails_example Project
   hosts: all
   become: yes
 
@@ -8,4 +8,4 @@
     - nodejs
 #    - npm
     - ruby
-    - postgres
+#    - postgres
