@@ -7,8 +7,8 @@
   with_items:
     - git-core
     - curl
+    - wget
     - zlib1g-dev
-    - build-essential
     - libssl-dev
     - libreadline-dev
     - libyaml-dev
