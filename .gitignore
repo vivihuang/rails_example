@@ -14,7 +14,7 @@
 
 .vagrant
 vendor
-public
+public/assets
 .idea
 .DS_Store
 webapp/node_modules
