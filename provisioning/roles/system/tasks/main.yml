@@ -6,6 +6,7 @@
   apt: pkg={{ item }} state=present force=yes
   with_items:
     - git-core
+    - git
     - curl
     - wget
     - zlib1g-dev
@@ -30,17 +31,15 @@
     - imagemagick
     - zsh
 
+- name: Fetch oh-my-zsh
+  git: repo=git://github.com/robbyrussell/oh-my-zsh.git
+       dest=~/.oh-my-zsh
+
+- name: Clone .zshrc for oh-my-zsh
+  copy: src=~/.oh-my-zsh/templates/zshrc.zsh-template
+        dest=~/.zshrc
+
 - name: Change current user shell
   user:
-    name: vagrant
+    name: root
     shell: /bin/zsh
-
-- name: Fetch oh-my-zsh
-  get_url:
-    url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-    dest: /tmp/install-oh-my-zsh.sh
-    mode: 0755
-
-- name: Install oh-my-zsh
-  command: sh /tmp/install-oh-my-zsh.sh
-  become: yes
