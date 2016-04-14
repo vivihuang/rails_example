@@ -12,7 +12,7 @@ function lintOnce (fileConf) {
 }
 
 function lintWatch (targetFile, config) {
-  return gulp.src(targetFile)
+  return gulp.src(config.src)
     .pipe(eslint(config.options))
     .pipe(eslint.formatEach('compact', process.stderr))
     .pipe(gutil.noop())
