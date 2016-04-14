@@ -17,3 +17,6 @@ vendor
 public
 .idea
 .DS_Store
+webapp/node_modules
+webapp/public
+npm-debug.log
