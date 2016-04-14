@@ -45,7 +45,7 @@ export default {
       }),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
-      new ManifestPlugin({basePath: '/public/'})
+      new ManifestPlugin({basePath: '/assets/'})
     ]
   }
 };
