@@ -31,13 +31,19 @@
     - imagemagick
     - zsh
 
+- name: Check oh-my-zsh file exists
+  stat: path=~/.zshrc
+  register: zshrc
+
 - name: Fetch oh-my-zsh
   git: repo=git://github.com/robbyrussell/oh-my-zsh.git
        dest=~/.oh-my-zsh
+  when: zshrc.stat.exists == False
 
 - name: Clone .zshrc for oh-my-zsh
   copy: src=~/.oh-my-zsh/templates/zshrc.zsh-template
         dest=~/.zshrc
+  when: zshrc.stat.exists == False
 
 - name: Change current user shell
   user:
