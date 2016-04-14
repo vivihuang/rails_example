@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   # root 'home#index'
   match '*all', to: 'application#index', via: [:get]
 
+  scope 'api' do
+    scope 'v1' do
+      resources :todos
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
