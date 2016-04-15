@@ -1,6 +1,6 @@
 class AddCompletedColumnToTodos < ActiveRecord::Migration
   def up
-    add_column :todos, :completed, :boolean, :default => TRUE
+    add_column :todos, :completed, :boolean, :default => FALSE
   end
 
   def down
