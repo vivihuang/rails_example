@@ -4,10 +4,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'home#index'
-  match '*all', to: 'application#index', via: [:get]
+  root :to => 'application#index', via: [:get]
 
-  scope 'api' do
-    scope 'v1' do
+  namespace 'api' do
+    namespace 'v1' do
       resources :todos
     end
   end
