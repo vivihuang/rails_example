@@ -7,8 +7,8 @@ class InputBox extends Component {
   }
 
   handleSubmit(text) {
-    const { id, onSubmit } = this.props
-    onSubmit(id, text)
+    const { onSubmit } = this.props
+    onSubmit(text)
   }
 
   render() {
@@ -33,7 +33,6 @@ class InputBox extends Component {
 
 InputBox.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  id: PropTypes.number,
   defaultValue: PropTypes.string
 }
 

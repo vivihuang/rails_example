@@ -71,3 +71,8 @@ export const modifyData = (id, text) =>
       }
       dispatch(fetchData())
     })
+
+export const modifyStatus = (id = 0) =>
+  (dispatch) => {
+    dispatch({ type: 'set', data: id })
+  }

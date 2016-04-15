@@ -15,8 +15,22 @@ const fetchData = (state = [], action) => {
   }
 }
 
+const setModifiedId = (state = 0, action) => {
+  switch (action.type) {
+    case 'set':
+      return {
+        id: action.data
+      }
+    default:
+      return {
+        id: _.isEmpty(state) ? state : state.id
+      }
+  }
+}
+
 const rootReducer = combineReducers({
   fetchData,
+  setModifiedId,
   routing: routerReducer
 })
 
