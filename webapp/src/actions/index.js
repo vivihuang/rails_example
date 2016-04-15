@@ -54,7 +54,7 @@ export const deleteData = (id) =>
 
 export const modifyData = (id, text) =>
   (dispatch) =>
-    fetch(baseUrl, {
+    fetch(baseUrl + id, {
       method: 'put',
       headers: {
         Accept: 'application/json',
@@ -69,8 +69,5 @@ export const modifyData = (id, text) =>
       if (res.status >= 400) {
         throw new Error('Bad response from server')
       }
-      return res.json()
-    })
-    .then(() => {
       dispatch(fetchRedditData())
     })

@@ -7,12 +7,13 @@ class InputBox extends Component {
   }
 
   handleSubmit(text) {
-    const { onSubmit } = this.props
-    onSubmit(text)
+    const { id, onSubmit } = this.props
+    onSubmit(id, text)
   }
 
   render() {
     let input
+    const { defaultValue } = this.props
     return (
       <form onSubmit={(e) => {
         e.preventDefault()
@@ -21,7 +22,7 @@ class InputBox extends Component {
       }}
       >
         <input type='text'
-          defaultValue={this.props.defaultValue}
+          defaultValue={defaultValue}
           ref={(node) => { input = node }}
         />
         <button type='submit'>Submit</button>

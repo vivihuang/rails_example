@@ -16,6 +16,12 @@ class Api::V1::TodosController < ApplicationController
     respond_with :api, :v1, @todo
   end
 
+  def update
+    @todo = Todo.find(params[:id])
+    @todo.update(todo_params)
+    respond_with :api, :v1, @todo
+  end
+
   private
   def todo_params
     params.require(:todo).permit(:title)
