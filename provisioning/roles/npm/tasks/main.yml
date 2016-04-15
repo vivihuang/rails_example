@@ -13,7 +13,7 @@
   when: npm_present|failed
 
 - name: Download/Install packages
-  command: "{{ item }} chdir=/vagrant/"
+  command: "{{ item }} chdir=/vagrant/webapp"
   with_items:
     - npm install -g gulp
     - npm install
