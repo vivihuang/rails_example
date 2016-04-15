@@ -52,18 +52,15 @@ export const deleteData = (id) =>
       dispatch(fetchData())
     })
 
-export const modifyData = (id, text) =>
+export const modifyData = (item) =>
   (dispatch) =>
-    fetch(baseUrl + id, {
+    fetch(baseUrl + item.id, {
       method: 'put',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        id,
-        title: text
-      })
+      body: JSON.stringify(item)
     })
     .then((res) => {
       if (res.status >= 400) {

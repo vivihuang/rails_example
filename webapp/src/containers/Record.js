@@ -7,9 +7,15 @@ import InputBox from '../components/InputBox'
 class Record extends Component {
   constructor(props) {
     super(props)
+    this.handleClick = this.handleClick.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.handleModify = this.handleModify.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleClick(item) {
+    const { dispatch } = this.props
+    dispatch(modifyData(Object.assign({}, item, { completed: !item.completed })))
   }
 
   handleDelete(id) {
@@ -23,8 +29,9 @@ class Record extends Component {
   }
 
   handleSubmit(text) {
-    const { dispatch, modifiedId } = this.props
-    dispatch(modifyData(modifiedId, text))
+    const { dispatch, modifiedId, records } = this.props
+    const modifiedItem = _.filter(records, (record) => record.id === modifiedId)[0]
+    dispatch(modifyData(Object.assign({}, modifiedItem, { title: text })))
     dispatch(modifyStatus())
   }
 
@@ -34,6 +41,7 @@ class Record extends Component {
       color: 'blue',
       cursor: 'pointer'
     }
+    const itemStyle = (status) => ({ textDecoration: status ? 'line-through' : '' })
     return (
       <div>
         <ul>
@@ -45,20 +53,23 @@ class Record extends Component {
               </li>)
               : (
               <li key={index}>
-                <p>{item.title}
-                  {'  '}
-                  <a onClick={(e) => {
-                    e.preventDefault()
-                    this.handleModify(item.id)
-                  }} style={linkStyle}
-                  >修改</a>
-                  {'  '}
-                  <a onClick={(e) => {
-                    e.preventDefault()
-                    this.handleDelete(item.id)
-                  }} style={linkStyle}
-                  >删除</a>
-                </p>
+                <a onClick={(e) => {
+                  e.preventDefault()
+                  this.handleClick(item)
+                }} style={itemStyle(item.completed)}
+                >{item.title}</a>
+                {'  '}
+                <a onClick={(e) => {
+                  e.preventDefault()
+                  this.handleModify(item.id)
+                }} style={linkStyle}
+                >修改</a>
+                {'  '}
+                <a onClick={(e) => {
+                  e.preventDefault()
+                  this.handleDelete(item.id)
+                }} style={linkStyle}
+                >删除</a>
               </li>)
           ))}
         </ul>
