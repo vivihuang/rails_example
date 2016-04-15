@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { fetchRedditData } from '../actions'
+import { fetchData } from '../actions'
 import Record from './Record'
 import AddNewData from './AddNewData'
 
@@ -13,12 +13,12 @@ class App extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props
-    dispatch(fetchRedditData())
+    dispatch(fetchData())
   }
 
   handleRefresh() {
     const { dispatch } = this.props
-    dispatch(fetchRedditData())
+    dispatch(fetchData())
   }
 
   render() {

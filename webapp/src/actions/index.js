@@ -2,14 +2,14 @@ import fetch from 'isomorphic-fetch'
 
 const baseUrl = '/api/v1/todos/'
 
-const receiveRedditData = (data) => (
+const receiveData = (data) => (
   {
     type: 'fetch',
     data
   }
 )
 
-export const fetchRedditData = () =>
+export const fetchData = () =>
   (dispatch) => fetch(baseUrl)
     .then((res) => {
       if (res.status >= 400) {
@@ -18,7 +18,7 @@ export const fetchRedditData = () =>
       return res.json()
     })
     .then((data) => {
-      dispatch(receiveRedditData(data))
+      dispatch(receiveData(data))
     })
 
 export const addNewData = (text) =>
@@ -37,7 +37,7 @@ export const addNewData = (text) =>
       if (res.status >= 400) {
         throw new Error('Bad response from server')
       }
-      dispatch(fetchRedditData())
+      dispatch(fetchData())
     })
 
 export const deleteData = (id) =>
@@ -49,7 +49,7 @@ export const deleteData = (id) =>
       if (res.status >= 400) {
         throw new Error('Bad response from server')
       }
-      dispatch(fetchRedditData())
+      dispatch(fetchData())
     })
 
 export const modifyData = (id, text) =>
@@ -69,5 +69,5 @@ export const modifyData = (id, text) =>
       if (res.status >= 400) {
         throw new Error('Bad response from server')
       }
-      dispatch(fetchRedditData())
+      dispatch(fetchData())
     })
