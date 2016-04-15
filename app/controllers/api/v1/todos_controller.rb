@@ -1,16 +1,13 @@
 class Api::V1::TodosController < ApplicationController
   def index
     @todos = Todo.all
-    respond_with @todos
+    respond_with :api, :v1, @todos
   end
 
   def create
     @todo = Todo.new(todo_params)
-    if @todo.save
-      respond_with :api, :v1, @todo, status
-    else
-      respond_with :api, :v1, status
-    end
+    @todo.save
+    respond_with :api, :v1, @todo
   end
 
   private
