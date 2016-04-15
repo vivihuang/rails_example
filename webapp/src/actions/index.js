@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
-const baseUrl = '/api/v1/todos'
+const baseUrl = '/api/v1/todos/'
 
 const receiveRedditData = (data) => (
   {
@@ -37,35 +37,22 @@ export const addNewData = (text) =>
       if (res.status >= 400) {
         throw new Error('Bad response from server')
       }
-      return res.json()
-    })
-    .then(() => {
       dispatch(fetchRedditData())
     })
 
-export const deleteData = (selectedType, id) =>
+export const deleteData = (id) =>
   (dispatch) =>
-    fetch(baseUrl, {
-      method: 'delete',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id
-      })
+    fetch(baseUrl + id, {
+      method: 'delete'
     })
     .then((res) => {
       if (res.status >= 400) {
         throw new Error('Bad response from server')
       }
-      return res.json()
-    })
-    .then(() => {
       dispatch(fetchRedditData())
     })
 
-export const modifyData = (selectedType, id, text) =>
+export const modifyData = (id, text) =>
   (dispatch) =>
     fetch(baseUrl, {
       method: 'put',

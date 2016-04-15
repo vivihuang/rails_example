@@ -10,6 +10,12 @@ class Api::V1::TodosController < ApplicationController
     respond_with :api, :v1, @todo
   end
 
+  def destroy
+    @todo = Todo.find(params[:id])
+    @todo.destroy
+    respond_with :api, :v1, @todo
+  end
+
   private
   def todo_params
     params.require(:todo).permit(:title)
