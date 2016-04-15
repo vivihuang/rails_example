@@ -6,7 +6,7 @@ const fetchData = (state = [], action) => {
   switch (action.type) {
     case 'fetch':
       return {
-        data: action.data
+        data: _.sortBy(action.data, 'id')
       }
     default:
       return {
