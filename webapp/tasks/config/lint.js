@@ -9,7 +9,8 @@ export default {
     "parser": "babel-eslint",
     "rules": {
       'semi': 0,
-      'comma-dangle': 0
+      'comma-dangle': 0,
+      'jsx-quotes': 0
     },
     "extends": "airbnb",
     "plugins": [
