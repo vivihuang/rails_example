@@ -1,21 +1,17 @@
 import 'babel-polyfill'
 import React from 'react'
 import ReactDom from 'react-dom'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import App from './components/App'
-import todoStore from './reducers'
+import { Router, browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+import appStore from './stores/index'
+import routes from './routes/index'
 
-const store = createStore(todoStore)
+const history = syncHistoryWithStore(browserHistory, appStore)
 
-const render = () => {
-  ReactDom.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root')
-  )
-}
-
-render()
-store.subscribe(render)
+ReactDom.render(
+  <Provider store={appStore}>
+    <Router history={history} routes={routes} />
+  </Provider>,
+  document.getElementById('root')
+)

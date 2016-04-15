@@ -1,10 +1,23 @@
 import { combineReducers } from 'redux'
-import todos from './todos'
-import filterType from './filterType'
+import _ from 'lodash'
+import { routerReducer } from 'react-router-redux'
 
-const todoStore = combineReducers({
-  todos,
-  filterType
+const fetchData = (state = [], action) => {
+  switch (action.type) {
+    case 'fetch':
+      return {
+        data: action.data
+      }
+    default:
+      return {
+        data: _.isEmpty(state) ? state : state.data
+      }
+  }
+}
+
+const rootReducer = combineReducers({
+  fetchData,
+  routing: routerReducer
 })
 
-export default todoStore
+export default rootReducer
