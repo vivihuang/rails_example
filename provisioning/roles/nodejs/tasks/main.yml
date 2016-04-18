@@ -6,7 +6,7 @@
   ignore_errors: True
 
 - name: Download Nodejs runtime if not yet present
-  command: bash -c "curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -"
+  command: bash -c "curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -"
   when: node_present|failed
 
 - name: Install Nodejs if not yet present

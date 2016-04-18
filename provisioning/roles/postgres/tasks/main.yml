@@ -17,11 +17,11 @@
 
 - name: terminate the connection to the db
   become_user: postgres
-  command: psql -c "select pg_terminate_backend(pid) from pg_stat_activity where datname = 'rails_dev';"
+  command: psql -c "select pg_terminate_backend(pid) from pg_stat_activity where datname = 'api_dev';"
 
 - name: drop development database if exist
   become_user: postgres
-  command: psql -c "DROP DATABASE IF EXISTS rails_dev;"
+  command: psql -c "DROP DATABASE IF EXISTS api_dev;"
 
 - name: delete root database if exist
   become_user: postgres
@@ -40,4 +40,4 @@
   command: psql -c "CREATE DATABASE root"
   
 - name: create development database
-  command: psql -c "CREATE DATABASE rails_dev"
+  command: psql -c "CREATE DATABASE api_dev"
