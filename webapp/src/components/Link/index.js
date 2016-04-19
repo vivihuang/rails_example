@@ -1,13 +1,11 @@
 import React, { PropTypes } from 'react'
 
 const Link = ({ item, linkStyle, text, handleClick }) => (
-  <div>
-    <a onClick={(e) => {
-      e.preventDefault()
-      handleClick(item)
-    }} style={linkStyle}
-    >{text}</a>
-  </div>
+  <a onClick={(e) => {
+    e.preventDefault()
+    handleClick(item)
+  }} style={linkStyle}
+  >{text}</a>
 )
 
 Link.defaultProps = {

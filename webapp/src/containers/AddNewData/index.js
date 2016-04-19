@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import InputBox from '../components/InputBox'
-import { addNewData } from '../actions'
+import InputBox from '../../components/InputBox'
+import { addNewData } from '../../actions'
 
 class AddNewData extends Component {
   constructor(props) {

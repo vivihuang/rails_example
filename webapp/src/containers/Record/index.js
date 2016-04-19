@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { deleteData, modifyData, modifyStatus } from '../actions'
-import InputBox from '../components/InputBox'
-import Link from '../components/Link'
+import { deleteData, modifyData, modifyStatus } from '../../actions'
+import InputBox from '../../components/InputBox'
+import Link from '../../components/Link'
 
 class Record extends Component {
   constructor(props) {
@@ -39,12 +39,13 @@ class Record extends Component {
   render() {
     const itemStyle = (status) => ({ textDecoration: status ? 'line-through' : '' })
     const modifyBox = (item, index) => (
-      <div key={index}>
+      <li key={index}>
         <InputBox onSubmit={this.handleSubmit} id={item.id} defaultValue={item.title} />
-      </div>
+      </li>
     )
     const showBox = (item, index) => (
-      <div key={index}>
+      <li key={index}>
+        <input type='checkbox' />
         <Link handleClick={this.handleClick}
           item={item}
           text={item.title}
@@ -52,15 +53,15 @@ class Record extends Component {
         />
         <Link handleClick={this.handleModify} item={item} text='Modify' />
         <Link handleClick={this.handleDelete} item={item} text='Delete' />
-      </div>
+      </li>
     )
     const content = (item, index) => (
       this.props.modifiedId === item.id ? modifyBox(item, index) : showBox(item, index)
     )
     return (
-      <div>
+      <ul>
         {_.map(this.props.records, (item, index) => (content(item, index)))}
-      </div>
+      </ul>
     )
   }
 }
