@@ -29,16 +29,17 @@ class Record extends Component {
   render() {
     const { item } = this.props
     const itemStyle = (status) => ({ textDecoration: status ? 'line-through' : '' })
+    const handleClick = this.handleClick
     return (
       <div>
-        <input type='checkbox' />
-        <Link handleClick={this.handleClick}
-          item={item}
-          text={item.title}
-          linkStyle={itemStyle(item.completed)}
+        <input type='checkbox' onChange={(e) => {
+          e.preventDefault()
+          handleClick(item)
+        }}
         />
-        <Link handleClick={this.handleModify} item={item} text='Modify' />
-        <Link handleClick={this.handleDelete} item={item} text='Delete' />
+        <span style={itemStyle(item.completed)}>{item.title}</span>
+        <Link handleClick={this.handleModify} item={item} icon='pencil' />
+        <Link handleClick={this.handleDelete} item={item} icon='times' />
       </div>
     )
   }

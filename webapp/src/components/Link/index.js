@@ -1,26 +1,21 @@
 import React, { PropTypes } from 'react'
+import Icon from '../../components/Icon'
 
-const Link = ({ item, linkStyle, text, handleClick }) => (
+const Link = ({ item, text, handleClick, icon }) => (
   <a onClick={(e) => {
     e.preventDefault()
     handleClick(item)
-  }} style={linkStyle}
-  >{text}</a>
+  }}
+  >{text}
+    <Icon icon={icon} />
+  </a>
 )
-
-Link.defaultProps = {
-  linkStyle: {
-    textDecoration: 'underline',
-    color: 'blue',
-    cursor: 'pointer'
-  }
-}
 
 Link.propTypes = {
   handleClick: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired,
-  linkStyle: PropTypes.object,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string,
+  icon: PropTypes.string
 }
 
 export default Link
