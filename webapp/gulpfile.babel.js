@@ -20,7 +20,6 @@ gulp.config('tasks.build', {
   taskQueue: [
     'clean',
     'copy',
-    'sass',
     'lint',
     'webpack'
   ],

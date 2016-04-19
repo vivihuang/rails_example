@@ -1,14 +1,16 @@
 import gulp from 'gulp'
 import webpack from 'webpack'
 import ManifestPlugin from 'webpack-manifest-plugin'
-var node_modules_dir = `${gulp.config('base.root')}/node_modules`
-var vendorFile = process.env.NODE_ENV === 'production' ? "[hash].vendor.js" : 'vendor.js'
-var bundleFile = process.env.NODE_ENV === 'production' ? "[hash].bundle.js" : 'bundle.js'
+import ExtractTextPlugin from "extract-text-webpack-plugin"
+
+let nodeModulesDir = `${gulp.config('base.root')}/node_modules`
+let vendorFile = process.env.NODE_ENV === 'production' ? "[hash].vendor.js" : 'vendor.js'
+let bundleFile = process.env.NODE_ENV === 'production' ? "[hash].bundle.js" : 'bundle.js'
 
 export default {
   files: [
     {
-      src: `${gulp.config('base.src')}/**/*.js`,
+      src: `${gulp.config('base.src')}/**/*.{,js,scss}`,
       dest: `${gulp.config('base.dist')}`
     }
   ],
@@ -26,7 +28,7 @@ export default {
     module: {
       loaders: [
         { test: /\.html$/, loader: 'file?name=[name].[ext]' },
-        { test: /\.(css|scss)$/, include: /src/, loader: "style-loader!css-loader?&modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!sass-loader" },
+        { test: /\.(css|scss)$/, include: /src/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?&modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!sass-loader") },
         { test: /\.(css|scss)$/, exclude: /src/, loader: "style-loader!css-loader!sass-loader" },
         { test: /\.(png|jpg)$/, loaders: "file?name=[path][name].[ext]" },
         { test: /\.woff(\?.*)?$/, loader: "url-loader?prefix=font/&name=[path][name].[ext]&limit=5000&mimetype=application/font-woff" },
@@ -34,7 +36,7 @@ export default {
         { test: /\.ttf(\?.*)?$/, loader: "file-loader?prefix=font/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream" },
         { test: /\.eot(\?.*)?$/, loader: "file-loader?prefix=font/&name=[path][name].[ext]" },
         { test: /\.svg(\?.*)?$/, loader: "file-loader?prefix=font/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml" },
-        { test: /\.js(\?.*)?$/, exclude: [node_modules_dir], loader: "react-hot!babel-loader" }
+        { test: /\.js(\?.*)?$/, exclude: [nodeModulesDir], loader: "react-hot!babel-loader" }
       ]
     },
     resolve: {
@@ -43,13 +45,12 @@ export default {
     },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({name: "vendor", filename: vendorFile,
-          minChunks: (module, count) => {
-            return module.resource && module.resource.indexOf(gulp.config('base.src')) === -1
-          }
+          minChunks: (module) => (module.resource && module.resource.indexOf(gulp.config('base.src')) === -1)
       }),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
-      new ManifestPlugin({basePath: '/assets/'})
+      new ManifestPlugin({basePath: '/assets/'}),
+      new ExtractTextPlugin('styles/screen.css', { allChunks: false })
     ]
   }
 };
