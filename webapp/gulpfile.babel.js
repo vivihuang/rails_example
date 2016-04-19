@@ -12,7 +12,7 @@ gulp.config('base.root', __dirname)
 gulp.config('base.src', path.join(__dirname, 'src'))
 gulp.config('base.test', path.join(__dirname, 'test'))
 gulp.config('templates', '../public')
-gulp.config('base.dist', '../public/assets')
+gulp.config('base.dist', path.join(__dirname, 'public'))
 
 gulp.config('tasks', requireDir(path.join(__dirname, 'tasks', 'config')))
 
