@@ -29,7 +29,6 @@ class Record extends Component {
 
   render() {
     const { item } = this.props
-    const itemStyle = (status) => ({ textDecoration: status ? 'line-through' : '' })
     const handleClick = this.handleClick
     return (
       <div>
@@ -38,7 +37,7 @@ class Record extends Component {
           handleClick(item)
         }}
         />
-        <span style={itemStyle(item.completed)}>{item.title}</span>
+        <span className={item.completed ? style.completed : style.uncompleted}>{item.title}</span>
         <Link handleClick={this.handleModify} item={item} icon={`pencil ${style.pointer}`} />
         <Link handleClick={this.handleDelete} item={item} icon={`times ${style.pointer}`} />
       </div>

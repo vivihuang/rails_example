@@ -1,3 +1,14 @@
+@import "../../styles/variables";
+
 .pointer {
   cursor: pointer;
+}
+
+.uncompleted {
+  color: $valid-record-text-color;
+}
+
+.completed {
+  color: $invalid-record-text-color;
+  text-decoration: line-through;
 }
