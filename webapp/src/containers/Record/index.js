@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { deleteData, modifyData, modifyStatus } from '../../actions'
 import { connect } from 'react-redux'
 import Link from '../../components/Link'
+import style from './style.scss'
 
 class Record extends Component {
   constructor(props) {
@@ -38,8 +39,8 @@ class Record extends Component {
         }}
         />
         <span style={itemStyle(item.completed)}>{item.title}</span>
-        <Link handleClick={this.handleModify} item={item} icon='pencil' />
-        <Link handleClick={this.handleDelete} item={item} icon='times' />
+        <Link handleClick={this.handleModify} item={item} icon={`pencil ${style.pointer}`} />
+        <Link handleClick={this.handleDelete} item={item} icon={`times ${style.pointer}`} />
       </div>
     )
   }
