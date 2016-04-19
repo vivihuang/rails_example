@@ -20,7 +20,7 @@ export default {
       vendor: ['react']
     },
     output: {
-      publicPath: "/public/",
+      publicPath: "/assets/",
       filename: bundleFile
     },
     module: {
