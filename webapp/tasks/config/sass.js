@@ -1,6 +1,6 @@
 import gulp from 'gulp'
 
-const cssDir = `${gulp.config('base.dist')}/static/css`
+const cssDir = `${gulp.config('base.dist')}/styles`
 
 export default {
   files: [{
@@ -16,26 +16,10 @@ export default {
     options: {
       filename: 'screen.css'
     }
-  }, {
-    entry: `${gulp.config('base.src')}/styles/pdf.scss`,
-    src: [
-      `${gulp.config('base.src')}/styles/_settings.scss`,
-      `${gulp.config('base.src')}/styles/pdf.scss`
-    ],
-    dest: cssDir
-  }, {
-    entry: `${gulp.config('base.src')}/styles/print-redesign.scss`,
-    src: [
-      `${gulp.config('base.src')}/styles/_settings.scss`,
-      `${gulp.config('base.src')}/styles/print-redesign.scss`
-    ],
-    dest: cssDir
   }],
   options: {
     includePaths: [
-      // 'node_modules/foundation-sites/scss',
-      // 'node_modules/font-awesome/scss',
-      // 'node_modules/jeet/scss/jeet'
+       'node_modules/font-awesome/scss'
     ],
     autoprefixer: {
       browsers: [
