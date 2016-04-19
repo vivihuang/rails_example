@@ -16,7 +16,8 @@ export default {
     cache: true,
     devtool: process.env.NODE_ENV === 'production' ? null : 'source-map',
     entry: {
-      bundle: `${gulp.config('base.src')}/index.js`
+      js: `${gulp.config('base.src')}/index.js`,
+      vendor: ['react']
     },
     output: {
       publicPath: "/public/",
@@ -24,13 +25,16 @@ export default {
     },
     module: {
       loaders: [
-        { test: /\.css$/,    loader: "style-loader!css-loader" },
-        { test: /\.woff$/,   loader: "url-loader?prefix=font/&limit=5000&mimetype=application/font-woff" },
-        { test: /\.ttf$/,    loader: "file-loader?prefix=font/" },
-        { test: /\.eot$/,    loader: "file-loader?prefix=font/" },
-        { test: /\.svg$/,    loader: "file-loader?prefix=font/" },
-
-        {test: /\.js$/, exclude: [node_modules_dir], loader: "babel-loader"}
+        { test: /\.html$/, loader: 'file?name=[name].[ext]' },
+        { test: /\.(css|scss)$/, include: /src/, loader: "style-loader!css-loader?&modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!sass-loader" },
+        { test: /\.(css|scss)$/, exclude: /src/, loader: "style-loader!css-loader!sass-loader" },
+        { test: /\.(png|jpg)$/, loaders: "file?name=[path][name].[ext]" },
+        { test: /\.woff(\?.*)?$/, loader: "url-loader?prefix=font/&name=[path][name].[ext]&limit=5000&mimetype=application/font-woff" },
+        { test: /\.woff2(\?.*)?$/, loader: "url-loader?prefix=font/&name=[path][name].[ext]&limit=5000&mimetype=application/font-woff2" },
+        { test: /\.ttf(\?.*)?$/, loader: "file-loader?prefix=font/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream" },
+        { test: /\.eot(\?.*)?$/, loader: "file-loader?prefix=font/&name=[path][name].[ext]" },
+        { test: /\.svg(\?.*)?$/, loader: "file-loader?prefix=font/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml" },
+        { test: /\.js(\?.*)?$/, exclude: [node_modules_dir], loader: "react-hot!babel-loader" }
       ]
     },
     resolve: {
