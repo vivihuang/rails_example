@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react'
 
-const Icon = ({ icon }) => {
+const Icon = ({ icon, handleClick }) => {
   const className = `fa fa-${icon}`
   return (
-    <i className={className}></i>
+    <i className={className} onClick={handleClick}></i>
   )
 }
 
@@ -12,7 +12,8 @@ Icon.defaultProps = {
 }
 
 Icon.propTypes = {
-  icon: PropTypes.string
+  icon: PropTypes.string,
+  handleClick: PropTypes.func
 }
 
 export default Icon

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { deleteData, modifyData, modifyStatus } from '../../actions'
 import { connect } from 'react-redux'
 import Link from '../../components/Link'
+import Icon from '../../components/Icon'
 import style from './style.scss'
 
 class Record extends Component {
@@ -30,9 +31,10 @@ class Record extends Component {
   render() {
     const { item } = this.props
     const handleClick = this.handleClick
+    const checkIcon = item.completed ? 'check-square-o' : 'square-o'
     return (
       <div>
-        <input type='checkbox' onChange={(e) => {
+        <Icon icon={checkIcon} handleClick={(e) => {
           e.preventDefault()
           handleClick(item)
         }}

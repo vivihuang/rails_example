@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { modifyData, modifyStatus } from '../../actions'
 import InputBox from '../../components/InputBox'
 import Record from '../../containers/Record'
+import style from './style.scss'
 
 class Records extends Component {
   constructor(props) {
@@ -20,20 +21,16 @@ class Records extends Component {
 
   render() {
     const content = (item, index) => (
-      this.props.modifiedId === item.id
-        ? (
-          <li key={index}>
-            <InputBox onSubmit={this.handleSubmit} id={item.id} defaultValue={item.title} />
-          </li>
-        )
-        : (
-          <li key={index}>
-            <Record item={item} />
-          </li>
-        )
+      <li key={index} className={style.list}>
+        {
+          this.props.modifiedId === item.id
+            ? <InputBox onSubmit={this.handleSubmit} id={item.id} defaultValue={item.title} />
+            : <Record item={item} />
+        }
+      </li>
     )
     return (
-      <ul>
+      <ul className={style.ul}>
         {_.map(this.props.records, (item, index) => (content(item, index)))}
       </ul>
     )
