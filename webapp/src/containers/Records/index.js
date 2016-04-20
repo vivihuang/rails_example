@@ -21,7 +21,7 @@ class Records extends Component {
 
   render() {
     const content = (item, index) => (
-      <li key={index} className={style.list}>
+      <li key={index}>
         {
           this.props.modifiedId === item.id
             ? <InputBox onSubmit={this.handleSubmit} id={item.id} defaultValue={item.title} />

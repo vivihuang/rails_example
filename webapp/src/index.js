@@ -6,6 +6,7 @@ import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import appStore from './stores/index'
 import routes from './routes/index'
+import './styles/screen.scss'
 import 'font-awesome/scss/font-awesome.scss'
 
 const history = syncHistoryWithStore(browserHistory, appStore)
