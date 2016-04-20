@@ -20,18 +20,14 @@ class Records extends Component {
   }
 
   render() {
-    const content = (item, index) => (
-      <li key={index}>
-        {
-          this.props.modifiedId === item.id
-            ? <InputBox onSubmit={this.handleSubmit} id={item.id} defaultValue={item.title} />
-            : <Record item={item} />
-        }
-      </li>
+    const content = (item) => (
+      this.props.modifiedId === item.id
+        ? <InputBox onSubmit={this.handleSubmit} id={item.id} defaultValue={item.title} />
+        : <Record item={item} />
     )
     return (
       <ul className={style.ul}>
-        {_.map(this.props.records, (item, index) => (content(item, index)))}
+        {_.map(this.props.records, (item, index) => (<li key={index}>{content(item)}</li>))}
       </ul>
     )
   }
