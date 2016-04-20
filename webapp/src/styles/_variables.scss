@@ -6,5 +6,7 @@ $logo-path: $assets-path + "logo.jpg";
 $logo-width: 45px;
 $logo-height: 60px;
 
-$nav-font-size: 20px;
+$font-size: 20px;
+
+$nav-font-size: $font-size;
 $nav-logo-margin: 20px;

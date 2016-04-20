@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { fetchData } from '../../actions'
 import Record from '../Records'
 import AddNewData from '../AddNewData'
+import style from './style.scss'
 
 class App extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class App extends Component {
       : (<Record records={items} />)
 
     return (
-      <div>
+      <div className={style.content}>
         {records}
         <AddNewData />
       </div>

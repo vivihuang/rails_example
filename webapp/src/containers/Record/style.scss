@@ -1,7 +1,13 @@
 @import "../../styles/variables";
 
-.pointer {
-  cursor: pointer;
+$check-width: 20px;
+$edit-width: 10px;
+
+.record {
+  display: inline-block;
+  width: 20%;
+  overflow-wrap: break-word;
+  vertical-align: middle;
 }
 
 .uncompleted {
@@ -11,4 +17,18 @@
 .completed {
   color: $invalid-record-text-color;
   text-decoration: line-through;
+}
+
+.list {
+  font-size: $font-size;
+}
+
+.checkIcon {
+  width: $check-width;
+  margin: 0 $check-width;
+}
+
+.editIcon {
+  margin: 0 $edit-width;
+  cursor: pointer;
 }

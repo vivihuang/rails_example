@@ -31,17 +31,18 @@ class Record extends Component {
   render() {
     const { item } = this.props
     const handleClick = this.handleClick
-    const checkIcon = item.completed ? 'check-square-o' : 'square-o'
+    const checkIcon = `${item.completed ? 'check-square-o' : 'square-o'} ${style.checkIcon}`
+    const recordClassName = `${style.record} ${item.completed ? style.completed : style.uncompleted}`
     return (
-      <div>
+      <div className={style.list}>
         <Icon icon={checkIcon} handleClick={(e) => {
           e.preventDefault()
           handleClick(item)
         }}
         />
-        <span className={item.completed ? style.completed : style.uncompleted}>{item.title}</span>
-        <Link handleClick={this.handleModify} item={item} icon={`pencil ${style.pointer}`} />
-        <Link handleClick={this.handleDelete} item={item} icon={`times ${style.pointer}`} />
+        <p className={recordClassName}>{item.title}</p>
+        <Link handleClick={this.handleModify} item={item} icon={`pencil ${style.editIcon}`} />
+        <Link handleClick={this.handleDelete} item={item} icon={`times ${style.editIcon}`} />
       </div>
     )
   }
