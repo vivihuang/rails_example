@@ -6,8 +6,8 @@ import ExtractTextPlugin from "extract-text-webpack-plugin"
 let nodeModulesDir = `${gulp.config('base.root')}/node_modules`
 let vendorFile = process.env.NODE_ENV === 'production' ? "[hash].vendor.js" : 'vendor.js'
 let bundleFile = process.env.NODE_ENV === 'production' ? "[hash].bundle.js" : 'bundle.js'
-let extractSrcCSS = new ExtractTextPlugin('styles/screen.css');
-let extractVendorCSS = new ExtractTextPlugin('styles/vendor.css');
+let extractSrcCSS = new ExtractTextPlugin('styles/screen.css')
+let extractVendorCSS = new ExtractTextPlugin('styles/vendor.css')
 
 export default {
   files: [

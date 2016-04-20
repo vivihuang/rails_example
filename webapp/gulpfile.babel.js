@@ -20,10 +20,9 @@ gulp.config('tasks.build', {
   taskQueue: [
     'clean',
     'copy',
-    'lint',
-    'webpack'
+    'lint'
   ],
-  afterTasks: ['manifest']
+  afterTasks: ['webpack', 'manifest']
 })
 
 gulp.task('dev', () => {
