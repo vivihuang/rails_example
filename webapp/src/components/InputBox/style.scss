@@ -1,6 +1,7 @@
 @import "../../styles/variables";
 
-$input-width: $record-width * 1.4;
+$new-input-width: $record-width * 1.4;
+$edit-input-width: $record-width;
 
 .form {
   font-size: inherit;
@@ -10,10 +11,21 @@ $input-width: $record-width * 1.4;
   font-size: inherit;
   border: 0;
   border-bottom: 1px solid $light-grey;
-  width: $input-width;
-  margin-left: $record-margin;
-  height: $font-size * 1.5;
   &:focus {
     outline: none;
   }
+}
+
+.new {
+  margin-left: $record-margin-horizontal;
+  height: $font-size * 1.5;
+  width: $new-input-width;
+  padding: $record-padding-vertical 0;
+}
+
+.edit {
+  height: $font-size;
+  margin: $record-margin-vertical 0 $record-margin-vertical $record-margin-horizontal * 3;
+  padding: $record-padding-vertical 0;
+  width: $edit-input-width;
 }

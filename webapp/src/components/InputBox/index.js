@@ -23,7 +23,7 @@ class InputBox extends Component {
           input.value = ''
         }}
       >
-        <input className={style.inputBox}
+        <input className={`${style.inputBox} ${defaultValue ? style.edit : style.new}`}
           type='text'
           defaultValue={defaultValue}
           placeholder='New Todo'

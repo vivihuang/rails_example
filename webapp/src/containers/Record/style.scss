@@ -1,13 +1,14 @@
 @import "../../styles/variables";
 
-$check-width: $record-margin;
-$edit-width: $record-margin / 2;
+$check-width: $record-margin-horizontal;
+$edit-width: $record-margin-horizontal / 2;
 
 .record {
   display: inline-block;
   width: $record-width;
   overflow-wrap: break-word;
   vertical-align: middle;
+  margin: $record-margin-vertical 0;
 }
 
 .uncompleted {
@@ -21,6 +22,7 @@ $edit-width: $record-margin / 2;
 
 .list {
   font-size: $font-size;
+  padding: $record-padding-vertical 0;
 }
 
 .checkIcon {

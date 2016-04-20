@@ -10,20 +10,20 @@
     font-size: $nav-font-size;
     text-decoration: none;
     text-transform: uppercase;
-    padding: $nav-logo-margin;
+    padding: $nav-logo-margin-left;
   }
 }
 
 .logo {
   background-image: url($logo-path);
   @include bg-image();
-  position: fixed;
+  position: absolute;
   text-indent: -9999px;
   width: $logo-width;
   height: $logo-height;
   top: 0;
   left: 20px;
-  margin: $nav-logo-margin;
+  margin: $nav-logo-margin-left;
 }
 
 .item {
