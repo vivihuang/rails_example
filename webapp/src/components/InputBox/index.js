@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import style from './style.scss'
 
 class InputBox extends Component {
   constructor(props) {
@@ -15,17 +16,20 @@ class InputBox extends Component {
     let input
     const { defaultValue } = this.props
     return (
-      <form onSubmit={(e) => {
-        e.preventDefault()
-        this.handleSubmit(input.value)
-        input.value = ''
-      }}
+      <form className={style.form}
+        onSubmit={(e) => {
+          e.preventDefault()
+          this.handleSubmit(input.value)
+          input.value = ''
+        }}
       >
-        <input type='text'
+        <input className={style.inputBox}
+          type='text'
           defaultValue={defaultValue}
+          placeholder='New Todo'
           ref={(node) => { input = node }}
         />
-        <button type='submit'>Submit</button>
+        <button type='submit' hidden />
       </form>
     )
   }

@@ -1,5 +1,7 @@
+$light-grey: #C3C3CE;
+
 $valid-record-text-color: #000;
-$invalid-record-text-color: grey;
+$invalid-record-text-color: $light-grey;
 
 $assets-path: "/assets/assets/";
 $logo-path: $assets-path + "logo.jpg";
@@ -10,3 +12,6 @@ $font-size: 20px;
 
 $nav-font-size: $font-size;
 $nav-logo-margin: 20px;
+
+$record-width: 20%;
+$record-margin: 20px;

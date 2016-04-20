@@ -32,7 +32,7 @@ class Record extends Component {
     const { item } = this.props
     const handleClick = this.handleClick
     const checkIcon = `${item.completed ? 'check-square-o' : 'square-o'} ${style.checkIcon}`
-    const recordClassName = `${style.record} ${item.completed ? style.completed : style.uncompleted}`
+    const titleClass = `${style.record} ${item.completed ? style.completed : style.uncompleted}`
     return (
       <div className={style.list}>
         <Icon icon={checkIcon} handleClick={(e) => {
@@ -40,7 +40,7 @@ class Record extends Component {
           handleClick(item)
         }}
         />
-        <p className={recordClassName}>{item.title}</p>
+        <p className={titleClass}>{item.title}</p>
         <Link handleClick={this.handleModify} item={item} icon={`pencil ${style.editIcon}`} />
         <Link handleClick={this.handleDelete} item={item} icon={`times ${style.editIcon}`} />
       </div>
