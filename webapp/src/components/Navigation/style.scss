@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+$logo-path: $assets-path + "logo.jpg";
+
+.logo {
+  background-image: url($logo-path);
+  @include bg-image();
+  text-indent: -9999px;
+  width: 80px;
+  height: 60px;
+}
+
+.item {
+  display: inline-block;
+}
