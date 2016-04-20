@@ -1,14 +1,29 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
-$logo-path: $assets-path + "logo.jpg";
+.nav {
+  height: $logo-height;
+  margin-left: $logo-width * 1.2;
+  a {
+    color: #000;
+    display: inline-block;
+    font-size: $nav-font-size;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: $nav-logo-margin;
+  }
+}
 
 .logo {
   background-image: url($logo-path);
   @include bg-image();
+  position: fixed;
   text-indent: -9999px;
-  width: 80px;
-  height: 60px;
+  width: $logo-width;
+  height: $logo-height;
+  top: 0;
+  left: 20px;
+  margin: $nav-logo-margin;
 }
 
 .item {

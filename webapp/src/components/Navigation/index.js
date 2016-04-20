@@ -4,12 +4,14 @@ import style from './style.scss'
 
 const Navigation = ({ children }) => (
   <div>
-    <h1 className={style.logo}>Vivi</h1>
-    <ul>
-      <li className={style.item}>
-        <Link to='/'>Homepage</Link>
-      </li>
-    </ul>
+    <nav className={style.nav}>
+      <h1 className={style.logo}>Vivi</h1>
+      <ul>
+        <li className={style.item}>
+          <Link to='/'>Home</Link>
+        </li>
+      </ul>
+    </nav>
     {children}
   </div>
 )
