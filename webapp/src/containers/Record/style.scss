@@ -3,9 +3,21 @@
 $check-width: $record-margin-horizontal;
 $edit-width: $record-margin-horizontal / 2;
 
+.list {
+  font-size: $font-size;
+  padding: $record-padding-vertical 0;
+  width: $record-width;
+  a {
+    visibility: hidden;
+  }
+  &:hover a {
+    visibility: visible;
+  }
+}
+
 .record {
   display: inline-block;
-  width: $record-width;
+  width: 60%;
   overflow-wrap: break-word;
   vertical-align: middle;
   margin: $record-margin-vertical 0;
@@ -18,11 +30,6 @@ $edit-width: $record-margin-horizontal / 2;
 .completed {
   color: $invalid-record-text-color;
   text-decoration: line-through;
-}
-
-.list {
-  font-size: $font-size;
-  padding: $record-padding-vertical 0;
 }
 
 .checkIcon {
