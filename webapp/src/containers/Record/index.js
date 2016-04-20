@@ -40,8 +40,12 @@ class Record extends Component {
           handleClick(item)
         }}
         />
-        <p className={titleClass}>{item.title}</p>
-        <Link handleClick={this.handleModify} item={item} icon={`pencil ${style.editIcon}`} />
+        <p className={titleClass}
+          onDoubleClick={(e) => {
+            e.preventDefault()
+            this.handleModify(item)
+          }}
+        >{item.title}</p>
         <Link handleClick={this.handleDelete} item={item} icon={`times ${style.editIcon}`} />
       </div>
     )

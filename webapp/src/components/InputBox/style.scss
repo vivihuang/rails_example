@@ -2,6 +2,7 @@
 
 $new-input-width: $record-width * 1.4;
 $edit-input-width: $record-width;
+$input-border-width: 1px;
 
 .form {
   font-size: inherit;
@@ -10,7 +11,7 @@ $edit-input-width: $record-width;
 .inputBox {
   font-size: inherit;
   border: 0;
-  border-bottom: 1px solid $light-grey;
+  border-bottom: $input-border-width solid $light-grey;
   &:focus {
     outline: none;
   }
@@ -24,8 +25,8 @@ $edit-input-width: $record-width;
 }
 
 .edit {
-  height: $font-size;
+  height: $font-size + $input-border-width;
   margin: $record-margin-vertical 0 $record-margin-vertical $record-margin-horizontal * 3;
-  padding: $record-padding-vertical 0;
+  padding: $record-padding-vertical 0 $record-padding-vertical + $input-border-width 0;
   width: $edit-input-width;
 }
