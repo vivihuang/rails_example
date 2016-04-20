@@ -6,15 +6,15 @@ export default {
     'gulpfile.babel.js'
   ],
   options: {
-    "parser": "babel-eslint",
-    "rules": {
-      'semi': 0,
-      'comma-dangle': 0,
-      'jsx-quotes': 0
+    'parser': 'babel-eslint',
+    'rules': {
+      'semi': ['error', 'never'],
+      'comma-dangle': ['error', 'never'],
+      'jsx-quotes': ['error', 'prefer-single']
     },
-    "extends": "airbnb",
-    "plugins": [
-      "react"
+    'extends': 'airbnb',
+    'plugins': [
+      'react'
     ]
   }
 }
