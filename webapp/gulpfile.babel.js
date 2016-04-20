@@ -19,10 +19,9 @@ gulp.config('tasks', requireDir(path.join(__dirname, 'tasks', 'config')))
 gulp.config('tasks.build', {
   taskQueue: [
     'clean',
-    'copy',
-    'lint'
+    'webpack'
   ],
-  afterTasks: ['webpack', 'manifest']
+  afterTasks: ['copy', 'lint', 'manifest']
 })
 
 gulp.task('dev', () => {
