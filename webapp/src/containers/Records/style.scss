@@ -7,4 +7,7 @@
 .completedLink {
   color: $light-grey;
   margin: $record-margin-vertical $record-margin-horizontal;
+  a {
+    cursor: pointer;
+  }
 }
