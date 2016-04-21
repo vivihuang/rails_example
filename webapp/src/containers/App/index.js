@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { fetchData } from '../../actions'
-import Record from '../Records'
+import Records from '../Records'
 import AddNewData from '../AddNewData'
 import style from './style.scss'
 
@@ -24,9 +24,9 @@ class App extends Component {
 
   render() {
     const { items } = this.props
-    let records = _.isEmpty(items)
+    let records = _.isEmpty(items.allData)
       ? (<div><h2>Loading...</h2></div>)
-      : (<Record records={items} />)
+      : (<Records records={items.allData} />)
 
     return (
       <div className={style.content}>
@@ -46,7 +46,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => ({ dispatch })
 
 App.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.object,
   dispatch: PropTypes.func
 }
 
