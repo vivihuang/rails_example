@@ -10,6 +10,7 @@ class Records extends Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
   }
 
   handleSubmit(text) {
@@ -19,10 +20,17 @@ class Records extends Component {
     dispatch(modifyStatus())
   }
 
+  handleBlur() {
+    const { dispatch } = this.props
+    dispatch(modifyStatus())
+  }
+
   render() {
     const content = (item) => (
       this.props.modifiedId === item.id
-        ? <InputBox onSubmit={this.handleSubmit} id={item.id} defaultValue={item.title} />
+        ? <InputBox onSubmit={this.handleSubmit} id={item.id}
+          defaultValue={item.title} onBlur={this.handleBlur}
+        />
         : <Record item={item} />
     )
     return (

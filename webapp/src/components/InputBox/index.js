@@ -14,7 +14,7 @@ class InputBox extends Component {
 
   render() {
     let input
-    const { defaultValue } = this.props
+    const { defaultValue, onBlur } = this.props
     return (
       <form className={style.form}
         onSubmit={(e) => {
@@ -28,6 +28,7 @@ class InputBox extends Component {
           defaultValue={defaultValue}
           placeholder='New Todo'
           ref={(node) => { input = node }}
+          onBlur={onBlur} autoFocus={!!defaultValue}
         />
         <button type='submit' hidden />
       </form>
@@ -37,7 +38,8 @@ class InputBox extends Component {
 
 InputBox.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  defaultValue: PropTypes.string
+  defaultValue: PropTypes.string,
+  onBlur: PropTypes.func
 }
 
 export default InputBox
