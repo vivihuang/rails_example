@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
+  match '*all' => 'application#index', via: [:get]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
