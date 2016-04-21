@@ -24,9 +24,9 @@ class App extends Component {
 
   render() {
     const { items } = this.props
-    let records = _.isEmpty(items.allData)
+    let records = _.isEmpty(items)
       ? (<div><h2>Loading...</h2></div>)
-      : (<Records records={items.allData} />)
+      : (<Records records={items} />)
 
     return (
       <div className={style.content}>

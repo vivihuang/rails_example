@@ -7,9 +7,8 @@ const fetchData = (state = {}, action) => {
     case 'fetch':
       return {
         data: {
-          completedData: _(action.data).filter(d => (d.completed)).sortBy('id').value(),
-          uncompletedData: _(action.data).filter(d => (!d.completed)).sortBy('id').value(),
-          allData: _(action.data).sortBy('id').sortBy('completed').value()
+          completedItems: _(action.data).filter(d => (d.completed)).sortBy('id').value(),
+          uncompletedItems: _(action.data).filter(d => (!d.completed)).sortBy('id').value()
         }
       }
     default:
@@ -32,9 +31,23 @@ const setModifiedId = (state = 0, action) => {
   }
 }
 
+const hideCompletedTasks = (state = true, action) => {
+  switch (action.type) {
+    case 'switch':
+      return {
+        status: action.data
+      }
+    default:
+      return {
+        status: _.isEmpty(state) ? state : state.status
+      }
+  }
+}
+
 const rootReducer = combineReducers({
   fetchData,
   setModifiedId,
+  hideCompletedTasks,
   routing: routerReducer
 })
 

@@ -1,3 +1,10 @@
+@import "../../styles/variables";
+
 .ul {
   padding-left: 0;
+}
+
+.completedLink {
+  color: $light-grey;
+  margin: $record-margin-vertical $record-margin-horizontal;
 }

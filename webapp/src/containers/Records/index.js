@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { modifyData, modifyStatus } from '../../actions'
+import { modifyData, modifyStatus, changeCompletedTasksStatus } from '../../actions'
 import InputBox from '../../components/InputBox'
 import Record from '../../containers/Record'
 import style from './style.scss'
@@ -11,6 +11,7 @@ class Records extends Component {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
+    this.handleCompletedTasks = this.handleCompletedTasks.bind(this)
   }
 
   handleSubmit(text) {
@@ -25,34 +26,53 @@ class Records extends Component {
     dispatch(modifyStatus())
   }
 
+  handleCompletedTasks() {
+    const { dispatch, hideCompletedTasks } = this.props
+    dispatch(changeCompletedTasksStatus(hideCompletedTasks))
+  }
+
   render() {
+    const { modifiedId, hideCompletedTasks } = this.props
+    const { uncompletedItems, completedItems } = this.props.records
     const content = (item) => (
-      this.props.modifiedId === item.id
+      modifiedId === item.id && !item.completed
         ? <InputBox onSubmit={this.handleSubmit} id={item.id}
           defaultValue={item.title} onBlur={this.handleBlur}
         />
         : <Record item={item} />
     )
     return (
-      <ul className={style.ul}>
-        {_.map(this.props.records, (item, index) => (<li key={index}>{content(item)}</li>))}
-      </ul>
+      <div>
+        <ul className={style.ul}>
+          {_.map(uncompletedItems, (item, index) => (<li key={index}>{content(item)}</li>))}
+        </ul>
+        <div className={style.completedLink}>
+          <a onClick={this.handleCompletedTasks}>
+            {hideCompletedTasks ? 'View' : 'Hide'} completed tasks ({completedItems.length})
+          </a>
+        </div>
+        <ul className={style.ul} hidden={hideCompletedTasks}>
+          {_.map(completedItems, (item, index) => (<li key={index}>{content(item)}</li>))}
+        </ul>
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => (
   {
-    modifiedId: state.setModifiedId.id
+    modifiedId: state.setModifiedId.id,
+    hideCompletedTasks: state.hideCompletedTasks.status
   }
 )
 
 const mapDispatchToProps = (dispatch) => ({ dispatch })
 
 Records.propTypes = {
-  records: PropTypes.array.isRequired,
+  records: PropTypes.object.isRequired,
   dispatch: PropTypes.func,
-  modifiedId: PropTypes.number
+  modifiedId: PropTypes.number,
+  hideCompletedTasks: PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Records)

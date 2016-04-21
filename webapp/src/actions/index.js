@@ -73,3 +73,10 @@ export const modifyStatus = (id = 0) =>
   (dispatch) => {
     dispatch({ type: 'set', data: id })
   }
+
+export const changeCompletedTasksStatus = (currentStatus) => (
+  {
+    type: 'switch',
+    data: !currentStatus
+  }
+)
