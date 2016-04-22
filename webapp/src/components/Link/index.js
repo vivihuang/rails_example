@@ -2,10 +2,11 @@ import React, { PropTypes } from 'react'
 import Icon from '../../components/Icon'
 
 const Link = ({ item, text, handleClick, icon }) => (
-  <a onClick={(e) => {
-    e.preventDefault()
-    handleClick(item)
-  }}
+  <a
+    onClick={(e) => {
+      e.preventDefault()
+      handleClick(item)
+    }}
   >{text}
     <Icon icon={icon} />
   </a>

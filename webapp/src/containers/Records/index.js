@@ -36,8 +36,11 @@ class Records extends Component {
     const { uncompletedItems, completedItems } = this.props.records
     const content = (item) => (
       modifiedId === item.id && !item.completed
-        ? <InputBox onSubmit={this.handleSubmit} id={item.id}
-          defaultValue={item.title} onBlur={this.handleBlur}
+        ? <InputBox
+          onSubmit={this.handleSubmit}
+          id={item.id}
+          defaultValue={item.title}
+          onBlur={this.handleBlur}
         />
         : <Record item={item} />
     )

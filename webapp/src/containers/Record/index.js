@@ -35,12 +35,15 @@ class Record extends Component {
     const titleClass = `${style.record} ${item.completed ? style.completed : style.uncompleted}`
     return (
       <div className={style.list}>
-        <Icon icon={checkIcon} handleClick={(e) => {
-          e.preventDefault()
-          handleClick(item)
-        }}
+        <Icon
+          icon={checkIcon}
+          handleClick={(e) => {
+            e.preventDefault()
+            handleClick(item)
+          }}
         />
-        <p className={titleClass}
+        <p
+          className={titleClass}
           onDoubleClick={(e) => {
             e.preventDefault()
             this.handleModify(item)

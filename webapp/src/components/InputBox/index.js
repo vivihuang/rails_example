@@ -16,14 +16,16 @@ class InputBox extends Component {
     let input
     const { defaultValue, onBlur } = this.props
     return (
-      <form className={style.form}
+      <form
+        className={style.form}
         onSubmit={(e) => {
           e.preventDefault()
           this.handleSubmit(input.value)
           input.value = ''
         }}
       >
-        <input className={`${style.inputBox} ${defaultValue ? style.edit : style.new}`}
+        <input
+          className={`${style.inputBox} ${defaultValue ? style.edit : style.new}`}
           type='text'
           defaultValue={defaultValue}
           placeholder='New Todo'
