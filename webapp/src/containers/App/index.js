@@ -7,17 +7,7 @@ import AddNewData from '../AddNewData'
 import style from './style.scss'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.handleRefresh = this.handleRefresh.bind(this)
-  }
-
   componentWillMount() {
-    const { dispatch } = this.props
-    dispatch(fetchData())
-  }
-
-  handleRefresh() {
     const { dispatch } = this.props
     dispatch(fetchData())
   }
