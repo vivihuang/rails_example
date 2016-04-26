@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  devise_for :user, only: []
   # You can have the root of your site routed with "root"
   # root 'home#index'
   root :to => 'application#index', via: [:get]
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     namespace 'v1' do
       resources :todos
       resources :users
+      resource :login, only: [:create], controller: :sessions
     end
   end
 

@@ -1,7 +1,7 @@
 class Api::V1::TodosController < ApplicationController
   def index
     @todos = Todo.all
-    respond_with :api, :v1, @todos
+    render json: @todos
   end
 
   def create
