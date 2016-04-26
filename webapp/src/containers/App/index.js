@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { fetchData } from '../../actions'
+import { fetchData } from '../../actions/index'
 import Records from '../Records'
 import AddNewData from '../AddNewData'
 import style from './style.scss'

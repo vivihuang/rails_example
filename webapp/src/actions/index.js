@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch'
+import { getErrors } from './login'
 
 const baseUrl = '/api/v1/todos/'
+const authToken = sessionStorage.getItem('authToken')
 
 const receiveData = (data) => (
   {
@@ -10,11 +12,14 @@ const receiveData = (data) => (
 )
 
 export const fetchData = () =>
-  (dispatch) => fetch(baseUrl)
-    .then((res) => {
-      if (res.status >= 400) {
-        throw new Error('Bad response from server')
+  (dispatch) =>
+    fetch(baseUrl, {
+      headers: {
+        Authorization: authToken
       }
+    })
+    .then((res) => {
+      getErrors(res, dispatch)
       return res.json()
     })
     .then((data) => {
@@ -26,6 +31,7 @@ export const addNewData = (text) =>
     fetch(baseUrl, {
       method: 'post',
       headers: {
+        Authorization: authToken,
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
@@ -34,21 +40,20 @@ export const addNewData = (text) =>
       })
     })
     .then((res) => {
-      if (res.status >= 400) {
-        throw new Error('Bad response from server')
-      }
+      getErrors(res, dispatch)
       dispatch(fetchData())
     })
 
 export const deleteData = (id) =>
   (dispatch) =>
     fetch(baseUrl + id, {
-      method: 'delete'
+      method: 'delete',
+      headers: {
+        Authorization: authToken
+      }
     })
     .then((res) => {
-      if (res.status >= 400) {
-        throw new Error('Bad response from server')
-      }
+      getErrors(res, dispatch)
       dispatch(fetchData())
     })
 
@@ -57,15 +62,14 @@ export const modifyData = (item) =>
     fetch(baseUrl + item.id, {
       method: 'put',
       headers: {
+        Authorization: authToken,
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(item)
     })
     .then((res) => {
-      if (res.status >= 400) {
-        throw new Error('Bad response from server')
-      }
+      getErrors(res, dispatch)
       dispatch(fetchData())
     })
 

@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import _ from 'lodash'
 import { routerReducer } from 'react-router-redux'
+import { reducer as formReducer } from 'redux-form'
+import { login } from './login'
 
 const fetchData = (state = {}, action) => {
   switch (action.type) {
@@ -48,7 +50,9 @@ const rootReducer = combineReducers({
   fetchData,
   setModifiedId,
   hideCompletedTasks,
-  routing: routerReducer
+  login,
+  routing: routerReducer,
+  form: formReducer
 })
 
 export default rootReducer
