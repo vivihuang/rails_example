@@ -7,7 +7,7 @@ import AddNewData from '../AddNewData'
 import style from './style.scss'
 
 class App extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props
     dispatch(fetchData())
   }
