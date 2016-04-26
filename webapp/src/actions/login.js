@@ -1,4 +1,6 @@
 import fetch from 'isomorphic-fetch'
+import { fetchData } from './index'
+import { setAuthToken, httpHeaders } from '../utils/auth'
 
 const baseUrl = '/api/v1/login'
 
@@ -13,7 +15,6 @@ const logoutAction = () => ({
 
 export const getErrors = (res, dispatch) => {
   if (res.status === 401) {
-    sessionStorage.removeItem('authToken')
     dispatch(logoutAction())
   } else if (res.status >= 400) {
     throw new Error('Bad response from server')
@@ -24,10 +25,7 @@ export const submitLoginValues = (values) =>
   (dispatch) =>
     fetch(baseUrl, {
       method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: httpHeaders(),
       body: JSON.stringify({
         username_or_email: values.usernameOrEmail,
         password: values.password
@@ -38,6 +36,7 @@ export const submitLoginValues = (values) =>
       return res.json()
     })
     .then((data) => {
-      sessionStorage.setItem('authToken', data.user.auth_token)
+      setAuthToken(data.user.auth_token)
       dispatch(loginAction(data.user))
+      dispatch(fetchData())
     })
