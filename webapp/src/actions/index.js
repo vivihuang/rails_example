@@ -17,7 +17,7 @@ export const fetchData = () =>
       headers: httpHeaders()
     })
     .then((res) => {
-      getErrors(res, dispatch)
+      getErrors(res)
       return res.json()
     })
     .then((data) => {
@@ -34,7 +34,7 @@ export const addNewData = (text) =>
       })
     })
     .then((res) => {
-      getErrors(res, dispatch)
+      getErrors(res)
       dispatch(fetchData())
     })
 
@@ -45,7 +45,7 @@ export const deleteData = (id) =>
       headers: httpHeaders()
     })
     .then((res) => {
-      getErrors(res, dispatch)
+      getErrors(res)
       dispatch(fetchData())
     })
 
@@ -57,7 +57,7 @@ export const modifyData = (item) =>
       body: JSON.stringify(item)
     })
     .then((res) => {
-      getErrors(res, dispatch)
+      getErrors(res)
       dispatch(fetchData())
     })
 

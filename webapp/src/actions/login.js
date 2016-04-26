@@ -13,10 +13,8 @@ const logoutAction = () => ({
   type: 'logout'
 })
 
-export const getErrors = (res, dispatch) => {
-  if (res.status === 401) {
-    dispatch(logoutAction())
-  } else if (res.status >= 400) {
+export const getErrors = (res) => {
+  if (res.status >= 400) {
     throw new Error('Bad response from server')
   }
 }
@@ -32,11 +30,13 @@ export const submitLoginValues = (values) =>
       })
     })
     .then((res) => {
-      getErrors(res, dispatch)
+      getErrors(res)
       return res.json()
     })
     .then((data) => {
-      setAuthToken(data.user.auth_token)
+      if (!data.error) {
+        setAuthToken(data.user.auth_token)
+      }
       dispatch(loginAction(data.user))
       dispatch(fetchData())
     })

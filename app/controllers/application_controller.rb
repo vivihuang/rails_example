@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authentication_error
-    render json: {:error => 'Unauthorized!'}, :status => 401
+    index
   end
 end
 

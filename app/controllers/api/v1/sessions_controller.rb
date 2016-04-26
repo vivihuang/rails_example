@@ -8,7 +8,7 @@ class Api::V1::SessionsController < ApplicationController
       log_in authorized_user
       render json: {:user => @current_user}
     else
-      render json: {:error => 'Invalid login attempt!'}, :status => 401
+      render json: {:error => 'Invalid login attempt!'}
     end
   end
 end
