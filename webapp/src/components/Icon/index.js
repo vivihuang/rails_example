@@ -8,7 +8,7 @@ const Icon = ({ icon, handleClick }) => {
 }
 
 Icon.defaultProps = {
-  icon: 'adjust'
+  icon: 'none'
 }
 
 Icon.propTypes = {

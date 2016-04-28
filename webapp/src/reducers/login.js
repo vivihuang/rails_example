@@ -1,6 +1,8 @@
+import { isLoggedIn } from '../utils/auth'
+
 const initialState = {
   user: {},
-  loggedIn: false
+  loggedIn: isLoggedIn()
 }
 
 export const login = (state = initialState, action) => {
@@ -11,8 +13,9 @@ export const login = (state = initialState, action) => {
         loggedIn: true
       }
     case 'logout':
-      return initialState
+      return state
     default:
       return state
+
   }
 }

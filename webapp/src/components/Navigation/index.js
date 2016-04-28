@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
+import Logout from '../../containers/Logout'
 import style from './style.scss'
 
 const Navigation = ({ children }) => (
@@ -9,6 +10,7 @@ const Navigation = ({ children }) => (
       <ul>
         <li className={style.item}><Link to='/'>Home</Link></li>
         <li className={style.item}><Link to='/about'>About</Link></li>
+        <li className={style.item}><Logout /></li>
       </ul>
     </nav>
     {children}

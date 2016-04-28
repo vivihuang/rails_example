@@ -2,6 +2,8 @@ const authToken = 'authToken'
 
 export const setAuthToken = (token) => sessionStorage.setItem(authToken, token)
 
+export const removeAuthToken = () => sessionStorage.removeItem(authToken)
+
 export const isLoggedIn = () => !!sessionStorage.getItem(authToken)
 
 export const httpHeaders = () => ({

@@ -1,8 +1,9 @@
 import fetch from 'isomorphic-fetch'
 import { fetchData } from './index'
-import { setAuthToken, httpHeaders } from '../utils/auth'
+import { setAuthToken, removeAuthToken, httpHeaders } from '../utils/auth'
 
-const baseUrl = '/api/v1/login'
+const loginUrl = '/api/v1/login'
+const logoutUrl = 'api/v1/logout'
 
 const loginAction = (data) => ({
   type: 'login',
@@ -19,9 +20,9 @@ export const getErrors = (res) => {
   }
 }
 
-export const submitLoginValues = (values) =>
+export const submitToLogin = (values) =>
   (dispatch) =>
-    fetch(baseUrl, {
+    fetch(loginUrl, {
       method: 'post',
       headers: httpHeaders(),
       body: JSON.stringify({
@@ -39,4 +40,19 @@ export const submitLoginValues = (values) =>
       }
       dispatch(loginAction(data.user))
       dispatch(fetchData())
+    })
+
+export const submitToLogout = () =>
+  (dispatch) =>
+    fetch(logoutUrl, {
+      method: 'delete',
+      headers: httpHeaders()
+    })
+    .then((res) => {
+      getErrors(res)
+      return res.json()
+    })
+    .then(() => {
+      removeAuthToken()
+      dispatch(logoutAction())
     })

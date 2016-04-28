@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { submitLoginValues } from '../../actions/login'
+import { submitToLogin } from '../../actions/login'
 
 export const fields = ['usernameOrEmail', 'password']
 
 const submitValidation = (values, dispatch) => {
-  dispatch(submitLoginValues(values))
+  dispatch(submitToLogin(values))
 }
 
 class Login extends Component {
