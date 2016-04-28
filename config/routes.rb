@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :todos
       resources :users
       resource :login, only: [:create], controller: :sessions
+      resource :logout, only: [:destroy], controller: :sessions
     end
   end
 

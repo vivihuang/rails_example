@@ -14,7 +14,7 @@ const Link = ({ item, text, handleClick, icon }) => (
 
 Link.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired,
+  item: PropTypes.object,
   text: PropTypes.string,
   icon: PropTypes.string
 }

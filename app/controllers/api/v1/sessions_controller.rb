@@ -11,4 +11,9 @@ class Api::V1::SessionsController < ApplicationController
       render json: {:error => 'Invalid login attempt!'}
     end
   end
+
+  def destroy
+    log_out
+    render json: {:message => 'Logout successfully!'}
+  end
 end
