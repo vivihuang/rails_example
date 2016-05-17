@@ -1,15 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { fetchData } from '../../actions/index'
+import * as todoActionCreators from '../../actions/todoActionCreators'
 import Records from '../Records'
 import AddNewData from '../AddNewData'
 import style from './style.scss'
 
 class App extends Component {
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetchData())
+    this.props.fetchTodoData()
   }
 
   render() {
@@ -29,15 +28,13 @@ class App extends Component {
 
 const mapStateToProps = (state) => (
   {
-    items: state.fetchData.data
+    items: state.todo.data
   }
 )
 
-const mapDispatchToProps = (dispatch) => ({ dispatch })
-
 App.propTypes = {
   items: PropTypes.object,
-  dispatch: PropTypes.func
+  fetchTodoData: PropTypes.func.isRequired
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, todoActionCreators)(App)

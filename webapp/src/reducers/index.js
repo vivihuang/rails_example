@@ -3,14 +3,21 @@ import _ from 'lodash'
 import { routerReducer } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
 import { login } from './login'
+import todo from './todo'
 
 const fetchData = (state = {}, action) => {
   switch (action.type) {
     case 'fetch':
       return {
         data: {
-          completedItems: _(action.data).filter(d => (d.completed)).sortBy('id').value(),
-          uncompletedItems: _(action.data).filter(d => (!d.completed)).sortBy('id').value()
+          completedItems: _(action.data)
+            .filter(d => (d.completed))
+            .sortBy('id')
+            .value(),
+          uncompletedItems: _(action.data)
+            .filter(d => (!d.completed))
+            .sortBy('id')
+            .value()
         }
       }
     default:
@@ -52,7 +59,8 @@ const rootReducer = combineReducers({
   hideCompletedTasks,
   login,
   routing: routerReducer,
-  form: formReducer
+  form: formReducer,
+  todo
 })
 
 export default rootReducer
