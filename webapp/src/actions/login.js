@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import { fetchData } from './index'
 import { setAuthToken, removeAuthToken, httpHeaders } from '../utils/auth'
+import { getErrors } from '../utils/webApi'
 
 const loginUrl = '/api/v1/login'
 const logoutUrl = 'api/v1/logout'
@@ -13,12 +14,6 @@ const loginAction = (data) => ({
 const logoutAction = () => ({
   type: 'logout'
 })
-
-export const getErrors = (res) => {
-  if (res.status >= 400) {
-    throw new Error('Bad response from server')
-  }
-}
 
 export const submitToLogin = (values) =>
   (dispatch) =>
