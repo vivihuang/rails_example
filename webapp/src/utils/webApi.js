@@ -28,3 +28,14 @@ export const updateData = (url, data) =>
     return res.json()
   })
   .then((resData) => resData.todo)
+
+export const deleteData = (url) =>
+  fetch(url, {
+    method: 'delete',
+    headers: httpHeaders()
+  })
+  .then((res) => {
+    getErrors(res)
+    return res.json()
+  })
+  .then((data) => data.todo)

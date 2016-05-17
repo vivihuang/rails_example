@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import { deleteData, modifyData, modifyStatus } from '../../actions'
+import { modifyData, modifyStatus } from '../../actions'
+import { bindActionCreators } from 'redux'
+import * as todoActionCreators from '../../actions/todoActionCreators'
 import { connect } from 'react-redux'
 import Link from '../../components/Link'
 import Icon from '../../components/Icon'
@@ -19,8 +21,7 @@ class Record extends Component {
   }
 
   handleDelete(item) {
-    const { dispatch } = this.props
-    dispatch(deleteData(item.id))
+    this.props.actions.deleteTodoData(item.id)
   }
 
   handleModify(item) {
@@ -55,9 +56,15 @@ class Record extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+  actions: bindActionCreators(todoActionCreators, dispatch)
+})
+
 Record.propTypes = {
   item: PropTypes.object.isRequired,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  actions: PropTypes.object.isRequired
 }
 
-export default connect()(Record)
+export default connect(null, mapDispatchToProps)(Record)
