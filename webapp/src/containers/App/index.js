@@ -28,12 +28,12 @@ class App extends Component {
 
 const mapStateToProps = (state) => (
   {
-    items: state.todo.data
+    items: state.todo.items
   }
 )
 
 App.propTypes = {
-  items: PropTypes.object,
+  items: PropTypes.array,
   fetchTodoData: PropTypes.func.isRequired
 }
 

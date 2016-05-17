@@ -32,8 +32,15 @@ class Records extends Component {
   }
 
   render() {
-    const { modifiedId, hideCompletedTasks } = this.props
-    const { uncompletedItems, completedItems } = this.props.records
+    const { modifiedId, hideCompletedTasks, records } = this.props
+    const completedItems = _(records)
+      .filter(d => (d.completed))
+      .sortBy('id')
+      .value()
+    const uncompletedItems = _(records)
+      .filter(d => (!d.completed))
+      .sortBy('id')
+      .value()
     const content = (item) => (
       modifiedId === item.id && !item.completed
         ? <InputBox
@@ -72,7 +79,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => ({ dispatch })
 
 Records.propTypes = {
-  records: PropTypes.object.isRequired,
+  records: PropTypes.array.isRequired,
   dispatch: PropTypes.func,
   modifiedId: PropTypes.number,
   hideCompletedTasks: PropTypes.bool
