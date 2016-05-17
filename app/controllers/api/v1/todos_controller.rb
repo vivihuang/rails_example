@@ -1,25 +1,25 @@
 class Api::V1::TodosController < ApplicationController
   def index
-    @todos = Todo.all
-    render json: @todos
+    todos = Todo.all
+    render json: todos
   end
 
   def create
-    @todo = Todo.new(todo_params)
-    @todo.save
-    respond_with :api, :v1, @todo
+    todo = Todo.new(todo_params)
+    todo.save
+    render json: todo
   end
 
   def destroy
-    @todo = Todo.find(params[:id])
-    @todo.destroy
-    respond_with :api, :v1, @todo
+    todo = Todo.find(params[:id])
+    todo.destroy
+    render json: todo
   end
 
   def update
-    @todo = Todo.find(params[:id])
-    @todo.update(todo_params)
-    respond_with :api, :v1, @todo
+    todo = Todo.find(params[:id])
+    todo.update(todo_params)
+    render json: todo
   end
 
   private

@@ -29,6 +29,7 @@ gem 'responders', '~> 2.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'devise'
+gem 'active_model_serializers'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
