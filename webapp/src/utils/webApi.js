@@ -7,7 +7,7 @@ export const getErrors = (res) => {
   }
 }
 
-export const fetchData = (url) =>
+export const getData = (url) =>
   fetch(url, {
     headers: httpHeaders()
   })
@@ -15,3 +15,16 @@ export const fetchData = (url) =>
     getErrors(res)
     return res.json()
   })
+  .then((data) => data.todos)
+
+export const updateData = (url, data) =>
+  fetch(url, {
+    method: 'put',
+    headers: httpHeaders(),
+    body: JSON.stringify(data)
+  })
+  .then((res) => {
+    getErrors(res)
+    return res.json()
+  })
+  .then((resData) => resData.todo)

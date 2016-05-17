@@ -6,5 +6,8 @@ const initialState = {
 export default handleActions({
   'fetch todo data': (state, action) => ({
     items: action.payload
+  }),
+  'update todo data': (state, action) => ({
+    items: state.items.map((item) => (item.id === action.payload.id ? action.payload : item))
   })
 }, initialState)

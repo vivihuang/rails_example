@@ -5,6 +5,12 @@ const baseUrl = '/api/v1/todos/'
 
 export const fetchTodoData = createAction('fetch todo data', async () =>
   await new Promise((resolve) => {
-    resolve(webApi.fetchData(baseUrl))
+    resolve(webApi.getData(baseUrl))
+  })
+)
+
+export const updateTodoData = createAction('update todo data', async item =>
+  await new Promise((resolve) => {
+    resolve(webApi.updateData(baseUrl + item.id, item))
   })
 )

@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import _ from 'lodash'
-import { modifyData, modifyStatus, changeCompletedTasksStatus } from '../../actions'
+import * as todoActionCreators from '../../actions/todoActionCreators'
+import { modifyStatus, changeCompletedTasksStatus } from '../../actions'
 import InputBox from '../../components/InputBox'
 import Record from '../../containers/Record'
 import style from './style.scss'
@@ -17,7 +19,7 @@ class Records extends Component {
   handleSubmit(text) {
     const { dispatch, modifiedId, records } = this.props
     const modifiedItem = _.filter(records, (record) => record.id === modifiedId)[0]
-    dispatch(modifyData(Object.assign({}, modifiedItem, { title: text })))
+    this.props.actions.updateTodoData(Object.assign({}, modifiedItem, { title: text }))
     dispatch(modifyStatus())
   }
 
@@ -76,13 +78,17 @@ const mapStateToProps = (state) => (
   }
 )
 
-const mapDispatchToProps = (dispatch) => ({ dispatch })
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+  actions: bindActionCreators(todoActionCreators, dispatch)
+})
 
 Records.propTypes = {
   records: PropTypes.array.isRequired,
   dispatch: PropTypes.func,
   modifiedId: PropTypes.number,
-  hideCompletedTasks: PropTypes.bool
+  hideCompletedTasks: PropTypes.bool,
+  actions: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Records)
