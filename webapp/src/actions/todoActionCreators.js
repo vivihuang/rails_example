@@ -20,3 +20,9 @@ export const deleteTodoData = createAction('delete todo data', async id =>
     resolve(webApi.deleteData(baseUrl + id))
   })
 )
+
+export const addTodoData = createAction('add todo data', async text =>
+  await new Promise((resolve) => {
+    resolve(webApi.addData(baseUrl, { title: text }))
+  })
+)

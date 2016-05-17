@@ -17,22 +17,34 @@ export const getData = (url) =>
   })
   .then((data) => data.todos)
 
-export const updateData = (url, data) =>
+export const updateData = (url, body) =>
   fetch(url, {
     method: 'put',
     headers: httpHeaders(),
-    body: JSON.stringify(data)
+    body: JSON.stringify(body)
   })
   .then((res) => {
     getErrors(res)
     return res.json()
   })
-  .then((resData) => resData.todo)
+  .then((data) => data.todo)
 
 export const deleteData = (url) =>
   fetch(url, {
     method: 'delete',
     headers: httpHeaders()
+  })
+  .then((res) => {
+    getErrors(res)
+    return res.json()
+  })
+  .then((data) => data.todo)
+
+export const addData = (url, body) =>
+  fetch(url, {
+    method: 'post',
+    headers: httpHeaders(),
+    body: JSON.stringify(body)
   })
   .then((res) => {
     getErrors(res)

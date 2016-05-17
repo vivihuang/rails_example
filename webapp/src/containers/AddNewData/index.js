@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import * as todoActionCreators from '../../actions/todoActionCreators'
 import InputBox from '../../components/InputBox'
-import { addNewData } from '../../actions'
 
 class AddNewData extends Component {
   constructor(props) {
@@ -10,8 +10,7 @@ class AddNewData extends Component {
   }
 
   handleSubmit(text) {
-    const { dispatch } = this.props
-    dispatch(addNewData(text))
+    this.props.addTodoData(text)
   }
 
   render() {
@@ -20,7 +19,7 @@ class AddNewData extends Component {
 }
 
 AddNewData.propTypes = {
-  dispatch: PropTypes.func
+  addTodoData: PropTypes.func.isRequired
 }
 
-export default connect()(AddNewData)
+export default connect(null, todoActionCreators)(AddNewData)
