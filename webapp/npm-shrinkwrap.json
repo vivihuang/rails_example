@@ -1543,6 +1543,11 @@
       "from": "flatten@1.0.2",
       "resolved": "https://registry.npmjs.org/flatten/-/flatten-1.0.2.tgz"
     },
+    "flux-standard-action": {
+      "version": "0.6.1",
+      "from": "flux-standard-action@>=0.6.0 <0.7.0",
+      "resolved": "https://registry.npmjs.org/flux-standard-action/-/flux-standard-action-0.6.1.tgz"
+    },
     "font-awesome": {
       "version": "4.6.1",
       "from": "font-awesome@>=4.6.1 <5.0.0",
@@ -3202,6 +3207,18 @@
       "version": "3.0.4",
       "from": "lodash.isarray@>=3.0.0 <4.0.0",
       "resolved": "https://registry.npmjs.org/lodash.isarray/-/lodash.isarray-3.0.4.tgz"
+    },
+    "lodash.isplainobject": {
+      "version": "3.2.0",
+      "from": "lodash.isplainobject@>=3.2.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/lodash.isplainobject/-/lodash.isplainobject-3.2.0.tgz",
+      "dependencies": {
+        "lodash.keysin": {
+          "version": "3.0.8",
+          "from": "lodash.keysin@>=3.0.0 <4.0.0",
+          "resolved": "https://registry.npmjs.org/lodash.keysin/-/lodash.keysin-3.0.8.tgz"
+        }
+      }
     },
     "lodash.keys": {
       "version": "3.1.2",
@@ -5443,15 +5460,30 @@
         }
       }
     },
+    "reduce-reducers": {
+      "version": "0.1.2",
+      "from": "reduce-reducers@>=0.1.0 <0.2.0",
+      "resolved": "https://registry.npmjs.org/reduce-reducers/-/reduce-reducers-0.1.2.tgz"
+    },
     "redux": {
       "version": "3.5.2",
       "from": "redux@3.5.2",
       "resolved": "https://registry.npmjs.org/redux/-/redux-3.5.2.tgz"
     },
+    "redux-actions": {
+      "version": "0.9.1",
+      "from": "redux-actions@latest",
+      "resolved": "https://registry.npmjs.org/redux-actions/-/redux-actions-0.9.1.tgz"
+    },
     "redux-form": {
       "version": "5.2.3",
       "from": "redux-form@5.2.3",
       "resolved": "https://registry.npmjs.org/redux-form/-/redux-form-5.2.3.tgz"
+    },
+    "redux-promise": {
+      "version": "0.5.3",
+      "from": "redux-promise@latest",
+      "resolved": "https://registry.npmjs.org/redux-promise/-/redux-promise-0.5.3.tgz"
     },
     "redux-thunk": {
       "version": "2.1.0",
