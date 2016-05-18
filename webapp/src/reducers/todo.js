@@ -6,19 +6,22 @@ const initialState = {
   hideCompletedTasks: true
 }
 export default handleActions({
-  'fetch todo data': (state, action) => ({
+  'fetch todo data': (state, action) => Object.assign({}, state, {
     items: action.payload
   }),
-  'update todo data': (state, action) => ({
+  'update todo data': (state, action) => Object.assign({}, state, {
     items: state.items.map((item) => (item.id === action.payload.id ? action.payload : item))
   }),
-  'delete todo data': (state, action) => ({
+  'delete todo data': (state, action) => Object.assign({}, state, {
     items: state.items.filter((item) => item.id !== action.payload.id)
   }),
-  'add todo data': (state, action) => ({
+  'add todo data': (state, action) => Object.assign({}, state, {
     items: state.items.concat(action.payload)
   }),
-  'set todo status': (state, action) => Object.assign({}, state, { modifiedId: action.payload }),
-  'set completed tasks status': (state, action) =>
-    Object.assign({}, state, { hideCompletedTasks: action.payload })
+  'set todo status': (state, action) => Object.assign({}, state, {
+    modifiedId: action.payload
+  }),
+  'set completed tasks status': (state, action) => Object.assign({}, state, {
+    hideCompletedTasks: action.payload
+  })
 }, initialState)

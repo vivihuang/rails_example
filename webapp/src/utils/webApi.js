@@ -15,7 +15,6 @@ export const getData = (url) =>
     getErrors(res)
     return res.json()
   })
-  .then((data) => data.todos)
 
 export const updateData = (url, body) =>
   fetch(url, {
@@ -27,7 +26,6 @@ export const updateData = (url, body) =>
     getErrors(res)
     return res.json()
   })
-  .then((data) => data.todo)
 
 export const deleteData = (url) =>
   fetch(url, {
@@ -38,9 +36,8 @@ export const deleteData = (url) =>
     getErrors(res)
     return res.json()
   })
-  .then((data) => data.todo)
 
-export const addData = (url, body) =>
+export const postData = (url, body) =>
   fetch(url, {
     method: 'post',
     headers: httpHeaders(),
@@ -50,4 +47,3 @@ export const addData = (url, body) =>
     getErrors(res)
     return res.json()
   })
-  .then((data) => data.todo)

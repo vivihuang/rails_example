@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import * as loginActionCreators from '../../actions/loginActionCreators'
 import Link from '../../components/Link'
-import { submitToLogout } from '../../actions/login'
 
 class Logout extends Component {
   constructor(props) {
@@ -10,8 +10,7 @@ class Logout extends Component {
   }
 
   handleClick() {
-    const { dispatch } = this.props
-    dispatch(submitToLogout())
+    this.props.userLogout()
     window.location.reload()
   }
 
@@ -24,7 +23,7 @@ class Logout extends Component {
 }
 
 Logout.propTypes = {
-  dispatch: PropTypes.func,
+  userLogout: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool
 }
 
@@ -32,6 +31,4 @@ const mapStateToProps = (state) => ({
   loggedIn: state.login.loggedIn
 })
 
-const mapDispatchToProps = (dispatch) => ({ dispatch })
-
-export default connect(mapStateToProps, mapDispatchToProps)(Logout)
+export default connect(mapStateToProps, loginActionCreators)(Logout)

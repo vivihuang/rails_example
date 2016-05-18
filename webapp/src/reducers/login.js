@@ -1,3 +1,4 @@
+import { handleActions } from 'redux-actions'
 import { isLoggedIn } from '../utils/auth'
 
 const initialState = {
@@ -5,17 +6,10 @@ const initialState = {
   loggedIn: isLoggedIn()
 }
 
-export const login = (state = initialState, action) => {
-  switch (action.type) {
-    case 'login':
-      return {
-        user: action.user,
-        loggedIn: true
-      }
-    case 'logout':
-      return state
-    default:
-      return state
-
-  }
-}
+export default handleActions({
+  'user login': (state, action) => Object.assign({}, state, {
+    user: action.payload,
+    loggedIn: true
+  }),
+  'user logout': (state) => Object.assign({}, state, initialState)
+}, initialState)

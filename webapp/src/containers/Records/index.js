@@ -26,8 +26,8 @@ class Records extends Component {
   }
 
   handleCompletedTasks() {
-    const { hideCompletedTasks } = this.props
-    this.props.setCompletedTasksStatus(hideCompletedTasks)
+    const { hideCompletedTasks, setCompletedTasksStatus } = this.props
+    setCompletedTasksStatus(!hideCompletedTasks)
   }
 
   render() {
