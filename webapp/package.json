@@ -4,7 +4,7 @@
   "description": "Vivi's blog using react and redux.",
   "scripts": {
     "build": "cross-env NODE_ENV=production gulp build",
-    "start": "node server.js",
+    "start": "cross-env NODE_ENV=development gulp dev",
     "test": "cross-env NODE_ENV=test mocha ./src/test/**/*.js --recursive --compilers js:babel-register --require ./src/test/setup.js",
     "test:watch": "npm test -- --watch"
   },
@@ -24,8 +24,7 @@
     "redux": "^3.5.2",
     "redux-actions": "^0.9.1",
     "redux-form": "^5.2.3",
-    "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.1.0"
+    "redux-promise": "^0.5.3"
   },
   "devDependencies": {
     "babel-core": "^6.8.0",
