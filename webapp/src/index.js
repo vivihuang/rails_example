@@ -4,15 +4,16 @@ import ReactDom from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import appStore from './stores/index'
-import routes from './routes/index'
+import appStore from './stores'
+import routes from './routes'
 import './styles/screen.scss'
 import 'font-awesome/scss/font-awesome.scss'
 
-const history = syncHistoryWithStore(browserHistory, appStore)
+const store = appStore(process.env.NODE_ENV)
+const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDom.render(
-  <Provider store={appStore}>
+  <Provider store={store}>
     <Router history={history} routes={routes} />
   </Provider>,
   document.getElementById('root')

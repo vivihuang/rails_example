@@ -11,11 +11,6 @@ const TASK_NAME = 'webpack'
 function whenInProductionDoUglify (config) {
   if (process.env.NODE_ENV === 'production') {
     config.options.plugins = config.options.plugins.concat(
-      new webpack.DefinePlugin({
-        "process.env": {
-          "NODE_ENV": JSON.stringify("production")
-        }
-      }),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin()
 	  )

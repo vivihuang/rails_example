@@ -5480,6 +5480,11 @@
       "from": "redux-form@5.2.3",
       "resolved": "https://registry.npmjs.org/redux-form/-/redux-form-5.2.3.tgz"
     },
+    "redux-logger": {
+      "version": "2.6.1",
+      "from": "redux-logger@latest",
+      "resolved": "https://registry.npmjs.org/redux-logger/-/redux-logger-2.6.1.tgz"
+    },
     "redux-promise": {
       "version": "0.5.3",
       "from": "redux-promise@latest",
