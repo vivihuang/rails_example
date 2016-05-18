@@ -26,3 +26,7 @@ export const addTodoData = createAction('add todo data', async text =>
     resolve(webApi.addData(baseUrl, { title: text }))
   })
 )
+
+export const setDataStatus = createAction('set todo status', (modifiedId = 0) => modifiedId)
+
+export const setCompletedTasksStatus = createAction('set completed tasks status', status => status)

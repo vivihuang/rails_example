@@ -33,7 +33,7 @@ const mapStateToProps = (state) => (
 )
 
 App.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.array.isRequired,
   fetchTodoData: PropTypes.func.isRequired
 }
 

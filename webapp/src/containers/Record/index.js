@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { modifyData, modifyStatus } from '../../actions'
-import { bindActionCreators } from 'redux'
-import * as todoActionCreators from '../../actions/todoActionCreators'
 import { connect } from 'react-redux'
+import * as todoActionCreators from '../../actions/todoActionCreators'
 import Link from '../../components/Link'
 import Icon from '../../components/Icon'
 import style from './style.scss'
@@ -16,17 +14,15 @@ class Record extends Component {
   }
 
   handleClick(item) {
-    const { dispatch } = this.props
-    dispatch(modifyData(Object.assign({}, item, { completed: !item.completed })))
+    this.props.updateTodoData(Object.assign({}, item, { completed: !item.completed }))
   }
 
   handleDelete(item) {
-    this.props.actions.deleteTodoData(item.id)
+    this.props.deleteTodoData(item.id)
   }
 
   handleModify(item) {
-    const { dispatch } = this.props
-    dispatch(modifyStatus(item.id))
+    this.props.setDataStatus(item.id)
   }
 
   render() {
@@ -56,15 +52,11 @@ class Record extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatch,
-  actions: bindActionCreators(todoActionCreators, dispatch)
-})
-
 Record.propTypes = {
   item: PropTypes.object.isRequired,
-  dispatch: PropTypes.func,
-  actions: PropTypes.object.isRequired
+  updateTodoData: PropTypes.func.isRequired,
+  deleteTodoData: PropTypes.func.isRequired,
+  setDataStatus: PropTypes.func.isRequired
 }
 
-export default connect(null, mapDispatchToProps)(Record)
+export default connect(null, todoActionCreators)(Record)

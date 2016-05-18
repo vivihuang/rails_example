@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import _ from 'lodash'
 import * as todoActionCreators from '../../actions/todoActionCreators'
-import { modifyStatus, changeCompletedTasksStatus } from '../../actions'
 import InputBox from '../../components/InputBox'
 import Record from '../../containers/Record'
 import style from './style.scss'
@@ -17,20 +15,19 @@ class Records extends Component {
   }
 
   handleSubmit(text) {
-    const { dispatch, modifiedId, records } = this.props
+    const { modifiedId, records } = this.props
     const modifiedItem = _.filter(records, (record) => record.id === modifiedId)[0]
-    this.props.actions.updateTodoData(Object.assign({}, modifiedItem, { title: text }))
-    dispatch(modifyStatus())
+    this.props.updateTodoData(Object.assign({}, modifiedItem, { title: text }))
+    this.props.setDataStatus()
   }
 
   handleBlur() {
-    const { dispatch } = this.props
-    dispatch(modifyStatus())
+    this.props.setDataStatus()
   }
 
   handleCompletedTasks() {
-    const { dispatch, hideCompletedTasks } = this.props
-    dispatch(changeCompletedTasksStatus(hideCompletedTasks))
+    const { hideCompletedTasks } = this.props
+    this.props.setCompletedTasksStatus(hideCompletedTasks)
   }
 
   render() {
@@ -73,22 +70,18 @@ class Records extends Component {
 
 const mapStateToProps = (state) => (
   {
-    modifiedId: state.setModifiedId.id,
-    hideCompletedTasks: state.hideCompletedTasks.status
+    modifiedId: state.todo.modifiedId,
+    hideCompletedTasks: state.todo.hideCompletedTasks
   }
 )
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatch,
-  actions: bindActionCreators(todoActionCreators, dispatch)
-})
-
 Records.propTypes = {
   records: PropTypes.array.isRequired,
-  dispatch: PropTypes.func,
   modifiedId: PropTypes.number,
   hideCompletedTasks: PropTypes.bool,
-  actions: PropTypes.object.isRequired
+  updateTodoData: PropTypes.func.isRequired,
+  setDataStatus: PropTypes.func.isRequired,
+  setCompletedTasksStatus: PropTypes.func.isRequired
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Records)
+export default connect(mapStateToProps, todoActionCreators)(Records)
